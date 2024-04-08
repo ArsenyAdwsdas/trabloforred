@@ -1,0 +1,58 @@
+/*so you can copy the values easily*/
+/*Dark Colorful*/
+html{
+	--HEAD_COLOR= ;
+	--HEAD_COLOR2= ;
+	--TRA_COLOR= ;
+	--TRA_COLOR2= ;
+	--MAIN_COLOR=dark_blue;
+	--MAIN_COLOR2=yellow;
+	--TRA2_COLOR= ;
+	--TRA2_COLOR2= ;
+	--FOOT_COLOR= ;
+	--FOOT_COLOR2= ;
+}
+/*Light Colorful*/
+.blindEm{
+	--HEAD_COLOR= ;
+	--HEAD_COLOR2= ;
+	--TRA_COLOR= ;
+	--TRA_COLOR2= ;
+	--MAIN_COLOR=yellow;
+	--MAIN_COLOR2=dark_blue;
+	--TRA2_COLOR= ;
+	--TRA2_COLOR2= ;
+	--FOOT_COLOR= ;
+	--FOOT_COLOR2= ;
+}
+/*Dark Dry*/
+.dryEm{
+	--HEAD_COLOR= ;
+	--HEAD_COLOR2= ;
+	--TRA_COLOR= ;
+	--TRA_COLOR2= ;
+	--MAIN_COLOR=black;
+	--MAIN_COLOR2=white;
+	--TRA2_COLOR= ;
+	--TRA2_COLOR2= ;
+	--FOOT_COLOR= ;
+	--FOOT_COLOR2= ;
+}
+/*Light Dry*/
+.dryEm .blindEm,.blindEm .dryEm,:is(.dryEm,.blindEm){
+	--HEAD_COLOR= ;
+	--HEAD_COLOR2= ;
+	--TRA_COLOR= ;
+	--TRA_COLOR2= ;
+	--MAIN_COLOR=white;
+	--MAIN_COLOR2=black;
+	--TRA2_COLOR= ;
+	--TRA2_COLOR2= ;
+	--FOOT_COLOR= ;
+	--FOOT_COLOR2= ;
+}
+header{backround-color:var(--HEAD_COLOR);color:var(--HEAD_COLOR2);}
+transit{backround-color:var(--TRA_COLOR);color:var(--TRA_COLOR2);}
+html{backround-color:var(--MAIN_COLOR);color:var(--MAIN_COLOR2);}
+transit2{backround-color:var(--TRA2_COLOR);color:var(--TRA2_COLOR2);}
+footer{backround-color:var(--FOOT_COLOR);color:var(--FOOT_COLOR2);}
