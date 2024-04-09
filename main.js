@@ -29,8 +29,7 @@ app.engine("md",async function(file,options,callback){
 			"{[foot]}":""
 		}
 		let l=[form[0]];for(let i=0;i<splitrs.length;i++)l.push(o[splitrs[i]]!=undefined?o[splitrs[i]]:"&lt;undefined&gt;",form[i+1])
-		let output=l.join("")
-		return callback(null, output);
+		return callback(null, l.join(""));
 	}catch(e){
 	return callback(e);
   }
@@ -38,22 +37,15 @@ app.engine("md",async function(file,options,callback){
 app.set("views","./public")
 app.set("view engine","md")
 
-app.use(express.static("public"));
+app.use(["/public","//","/raw"],express.static("public"));
 
-app.get("/", (request, response) => {
-  response.render('index');
-});
-
-app.use(function(request,response,next){
-  try{
-    let path = request.url.split('?')[0].slice(1)
-    if(!fs.existsSync("public/"+path+".md"))return response.status(404).send("Error 404")
-    response.render(path);
-  }catch(e){
-    next();
-  }
+app.get("/",(request,response)=>{response.render("index");});
+app.get(/\/.+/gs,(req,res)=>{
+	let path=req.baseUrl.slice(req.baseUrl.find('/',1))
+	if(fs.existsSync(`public/${path}.md`))res.render(path);
+	else res.status(404).send("Error 404")
 });
 
 const listener=app.listen(process.env.PORT,()=>{
-  console.log("Your app is listening on port "+listener.address().port);
+	console.log("Your app is listening on port "+listener.address().port);
 });
