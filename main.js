@@ -35,7 +35,7 @@ app.engine("md",async function(file,options,callback){
 	return callback(e);
   }
 })
-app.set("views","./views")
+app.set("views","./public")
 app.set("view engine","md")
 
 app.use(express.static("public"));
@@ -47,7 +47,7 @@ app.get("/", (request, response) => {
 app.use(function(request,response,next){
   try{
     let path = request.url.split('?')[0].slice(1)
-    if(!fs.existsSync("md/"+path+".md"))return response.status(404).send("Error 404")
+    if(!fs.existsSync("public/"+path+".md"))return response.status(404).send("Error 404")
     response.render(path);
   }catch(e){
     next();
