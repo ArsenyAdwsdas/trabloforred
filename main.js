@@ -5,7 +5,7 @@ const md=new(require('markdown-it'))({html:true});
 
 //the victim .html to replace stuff
 const templatePath="public/base.html";
-//lists all that gets replaced once to make page assembly faster
+//lists all that gets replaced once to make page assembly faster(probably)
 const splitrs=["{[title]}","{[head]}","{[transit1]}","{[content]}","{[transit2]}","{[foot]}"]
 
 const form=[]{
