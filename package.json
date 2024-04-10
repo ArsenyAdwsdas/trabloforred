@@ -15,5 +15,8 @@
 	},
 	"repository": {
 		"url": "https://github.com/ArsenyAdwsdas/trabloforred"
+	},
+	"glitch": {
+		"projectType": "generated_static"
 	}
 }
