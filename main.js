@@ -1,5 +1,5 @@
 const express=require("express");const app=express();
-const extMap=require("./ext_map.js");
+const extMap=require("ext_map.js");
 
 
 Object.keys(extMap).forEach(ext=>{const Ext=extMap[ext]

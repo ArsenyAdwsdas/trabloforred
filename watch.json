@@ -1,9 +1,0 @@
-{
-  "install":{},
-  "restart": {
-    "include": [
-      "\\.md$",
-      "\\.js$"
-    ]
-  }
-}
