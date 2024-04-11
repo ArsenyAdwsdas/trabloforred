@@ -1,12 +1,12 @@
 const md=new(require('markdown-it'))({html:true});
 const fs=require('fs');
 //the victim .html to replace stuff for md
-const templatePath="public/md.html";
+const mdTemplate="public/md.html";
 //lists all that gets replaced once to make page assembly faster(probably)
 const splitrs=["{[title]}","{[head]}","{[transit1]}","{[content]}","{[transit2]}","{[foot]}"]
 
-const form=[]{
-	const s=fs.readFileSync(templatePath).toString(),I=0
+const form=[];{
+	const s=fs.readFileSync(mdTemplate).toString();let I=0
 	for(let i=0;i<splitrs.length;i++){
 		const _=s.indexOf(splitrs[i],I)
 		if(I>_){console.log(`Search for "${splitrs[i]}" failed.`);splitrs.splice(i,1);i--}
@@ -16,8 +16,8 @@ const form=[]{
 module.exports={
 	md:{
 		ext:"html",
-		cast=(s)=>{
-			let cont=fs.readFileSync(file).toString()
+		cast:(s)=>{
+			let cont=s
 			//what to replace stuff with
 			let o={
 				"{[title]}":cont.startsWith('# ')?cont.slice(2).replace(/\n.+/s,""):"&lt;untitled&gt;",

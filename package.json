@@ -1,23 +1,23 @@
 {
-	"name": "trabloforred",
-	"version": "0.0.1",
-	"description": " ",
-	"main": "main.js",
-	"scripts": {
-		"start": "node main.js",
-		"build": "node build.js"
-	},
-	"dependencies": {
-		"express": "^4.17.1",
-		"markdown-it": ">=12.3.2"
-	},
-	"engines": {
-		"node": "12.x"
-	},
-	"repository": {
-		"url": "https://github.com/ArsenyAdwsdas/trabloforred"
-	},
-	"glitch": {
-		"projectType": "generated_static"
-	}
+  "name": "trabloforred",
+  "version": "0.0.1",
+  "description": " ",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "markdown-it": "^12.3.2"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://github.com/ArsenyAdwsdas/trabloforred"
+  },
+  "glitch": {
+    "projectType": "generated_static"
+  }
 }
