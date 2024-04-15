@@ -32,7 +32,7 @@ module.exports={
 				"{[foot]}":""
 			}
 			let l=[form[0]];for(let i=0;i<splitrs.length;i++)l.push(o[splitrs[i]]!=undefined?o[splitrs[i]]:"&lt;undefined&gt;",form[i+1])
-			return l//.join("")
+			return l.join("")
 		}
 	}
 }

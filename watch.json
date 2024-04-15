@@ -1,7 +1,7 @@
 {
   "restart":{
-    "include":["public/.*",".+\\.js"],
-    "exclude":["main\\.js"]
+    "include":["public/.+",".+\\.js"],
+    "exclude":["0main\\.js"]
   },
   "throttle": 10000
 }
