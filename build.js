@@ -1,3 +1,4 @@
+if(typeof process.env.API_SERVER_EXTERNAL=="string"&&process.env.API_SERVER_EXTERNAL.indexOf(/api\.glitch\./i)!=-1)process.exit(0)
 const extMap=require("./ext_map.js")
 const fs=require("fs")
 const Fs=require("./funcs.js")

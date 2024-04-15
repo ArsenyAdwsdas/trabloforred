@@ -1,3 +1,8 @@
+(async()=>{
+  if(typeof process.env.API_SERVER_EXTERNAL=="string"&&process.env.API_SERVER_EXTERNAL.indexOf(/api\.glitch\./i)!=-1&&(await require('node-fetch')(`https://api.glitch.com/projects/${process.env.PROJECT_ID}`).then(_=>_.json())).appType=="generated_static"){
+    process.env.API_SERVER_EXTERNAL="";require("./build.js");process.exit(0)
+  }
+})()
 const express=require("express");const app=express();
 const extMap=require("./ext_map.js");const fs=require("fs")
 
@@ -6,9 +11,7 @@ Object.keys(extMap).forEach(ext=>{const Ext=extMap[ext]
 	app.engine(ext,async function(file,options,callback){
 		try{
 			return callback(null, Ext.cast(fs.readFileSync(file).toString()));
-		}catch(e){
-		return callback(e);
-	  }
+		}catch(e){return callback(e);}
 	})
 })
 app.set("views","./public")
@@ -24,5 +27,5 @@ app.get(/\/.+/gs,(req,res)=>{
 });
 
 const listener=app.listen(process.env.PORT,()=>{
-	console.log("Your app is listening on port "+listener.address().port);
+	console.log("Hosting at port "+listener.address().port);
 });

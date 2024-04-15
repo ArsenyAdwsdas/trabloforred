@@ -7,11 +7,10 @@ const splitrs=["{[title]}","{[head]}","{[transit1]}","{[content]}","{[transit2]}
 
 const form=[];{
 	const s=fs.readFileSync(templatePath).toString();let I=0
-  console.log(s)
 	for(let i=0;i<splitrs.length;i++){
 		const _=s.indexOf(splitrs[i],I)
 		if(I>_){console.log(`Search for "${splitrs[i]}" failed.`);splitrs.splice(i,1);i--}
-		else{form.push(s.slice(_));I=_+splitrs[i].length}
+		else{form.push(s.slice(I,_));I=_+splitrs[i].length}
 	}form.push(s.slice(I))
 }
 module.exports={
@@ -26,10 +25,10 @@ module.exports={
 			let o={
 				"{[title]}":cont.startsWith('# ')?cont.slice(2).replace(/\n.+/s,""):"&lt;untitled&gt;",
 				"{[head]}":"<a href=\"/\">Main page</a>",
-				"{[transit1]}":"",
+				"{[transit1]}":"&lt;transit1&gt;",
 				"{[content]}":md.render(cont),
-				"{[transit2]}":"",
-				"{[foot]}":""
+				"{[transit2]}":"&lt;transit2&gt;",
+				"{[foot]}":"&lt;footer&gt;"
 			}
 			let l=[form[0]];for(let i=0;i<splitrs.length;i++)l.push(o[splitrs[i]]!=undefined?o[splitrs[i]]:"&lt;undefined&gt;",form[i+1])
 			return l.join("")

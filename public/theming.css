@@ -1,64 +1,85 @@
-/*so you can copy the values easily*/
 /*Dark Colorful*/
-html{
-	--HEAD_COLOR: ;
-	--HEAD_COLOR2: ;
-	--TRA_COLOR: ;
-	--TRA_COLOR2: ;
+html,.defaultEm{
+  --LINK_HOVER:white;
+  --PAD_VERT:2vh;
+  --PAD_HORI:3vw;
+  --COLORPAD_VERT:.6vh;
+  --COLORPAD_HORI:1vw;
+	--HEAD_COLOR: darkblue;
+	--HEAD_COLOR2:yellow;
+	--TRA_COLOR: blue;
+	--TRA_COLOR2:yellow;
 	--MAIN_COLOR:darkblue;
 	--MAIN_COLOR2:yellow;
-	--TRA2_COLOR: ;
-	--TRA2_COLOR2: ;
-	--FOOT_COLOR: ;
-	--FOOT_COLOR2: ;
+	--TRA2_COLOR: blue;
+	--TRA2_COLOR2:yellow;
+	--FOOT_COLOR: darkblue;
+	--FOOT_COLOR2:yellow;
 }
 /*Light Colorful*/
 .blindEm{
-	--HEAD_COLOR: ;
-	--HEAD_COLOR2: ;
-	--TRA_COLOR: ;
-	--TRA_COLOR2: ;
+  --LINK_HOVER:black;
+	--HEAD_COLOR:yellow;
+	--HEAD_COLOR2:blue;
+	--TRA_COLOR:yellow;
+	--TRA_COLOR2:blue;
 	--MAIN_COLOR:yellow;
-	--MAIN_COLOR2:dark_blue;
-	--TRA2_COLOR: ;
-	--TRA2_COLOR2: ;
-	--FOOT_COLOR: ;
-	--FOOT_COLOR2: ;
+	--MAIN_COLOR2:blue;
+	--TRA2_COLOR:yellow;
+	--TRA2_COLOR2:blue;
+	--FOOT_COLOR:yellow;
+	--FOOT_COLOR2:blue;
 }
 /*Dark Dry*/
 .dryEm{
-	--HEAD_COLOR: ;
-	--HEAD_COLOR2: ;
-	--TRA_COLOR: ;
-	--TRA_COLOR2: ;
+  --LINK_HOVER:lightblue;
+	--HEAD_COLOR:black;
+	--HEAD_COLOR2:white;
+	--TRA_COLOR:black;
+	--TRA_COLOR2:white;
 	--MAIN_COLOR:black;
 	--MAIN_COLOR2:white;
-	--TRA2_COLOR: ;
-	--TRA2_COLOR2: ;
-	--FOOT_COLOR: ;
-	--FOOT_COLOR2: ;
+	--TRA2_COLOR:black;
+	--TRA2_COLOR2:white;
+	--FOOT_COLOR:black;
+	--FOOT_COLOR2:white;
 }
 /*Light Dry*/
-.dryEm .blindEm,.blindEm .dryEm,:is(.dryEm,.blindEm){
-	--HEAD_COLOR: ;
-	--HEAD_COLOR2: ;
-	--TRA_COLOR: ;
-	--TRA_COLOR2: ;
+.dryEm>.blindEm,.blindEm>.dryEm,.dryEm :not(.setThemes)>.blindEm,.blindEm :not(.setThemes)>.dryEm,.dryEm.blindEm{
+  --LINK_HOVER:darkblue;
+	--HEAD_COLOR:white;
+	--HEAD_COLOR2:black;
+	--TRA_COLOR:white;
+	--TRA_COLOR2:black;
 	--MAIN_COLOR:white;
 	--MAIN_COLOR2:black;
-	--TRA2_COLOR: ;
-	--TRA2_COLOR2: ;
-	--FOOT_COLOR: ;
-	--FOOT_COLOR2: ;
+	--TRA2_COLOR: white;
+	--TRA2_COLOR2:black;
+	--FOOT_COLOR:white;
+	--FOOT_COLOR2:black;
 }
-header{background-color:var(--HEAD_COLOR);color:var(--HEAD_COLOR2);}
-#transit{background-color:var(--TRA_COLOR);color:var(--TRA_COLOR2);}
-html{background-color:var(--MAIN_COLOR);color:var(--MAIN_COLOR2);}
-#transit2{background-color:var(--TRA2_COLOR);color:var(--TRA2_COLOR2);}
-footer{background-color:var(--FOOT_COLOR);color:var(--FOOT_COLOR2);}
+a{color:inherit;}a:hover{color:var(--LINK_HOVER)}
 html,body{min-width:100vw;}
-html,body,header,footer,#main,#transit,#transit2{margin:0;padding:0;}
-header,footer,#main,#transit,#transit2{
-	min-height:18vh;padding-top:1vh;padding-bottom:1vh;
-	min-width:100%;
+html,body,header,footer,#main,#transit1,#transit2{margin:0;padding:0;}
+#main h1,:is(header,footer,#transit1,#transit2)>div{margin:auto;width:50%;text-align:center;}
+header,footer,#main,#transit1,#transit2{
+	min-height:calc(20vh - var(--PAD_VERT) * 2);padding-top:var(--PAD_VERT);padding-bottom:var(--PAD_VERT);padding-left:var(--PAD_HORI);padding-right:var(--PAD_HORI);
+	min-width:calc(100% - var(--PAD_HORI) * 2);
+}
+#main{
+	min-height:calc(20vh - (var(--PAD_VERT) + var(--COLORPAD_VERT)) * 2);
+	min-width:calc(100% - (var(--PAD_HORI) + var(--COLORPAD_HORI)) * 2);
+}
+body,.setThemes>button{background-color:var(--MAIN_COLOR);color:var(--MAIN_COLOR2);}
+header,header .setThemes>button{background-color:var(--HEAD_COLOR);color:var(--HEAD_COLOR2);}
+footer,footer .setThemes>button{background-color:var(--FOOT_COLOR);color:var(--FOOT_COLOR2);}
+#transit1,#transit1 .setThemes>button{background-color:var(--TRA_COLOR);color:var(--TRA_COLOR2);}
+#transit2,#transit2 .setThemes>button{background-color:var(--TRA2_COLOR);color:var(--TRA2_COLOR2);}
+
+#main>div{
+  border-radius: 1.3vh;
+  min-width:inherit;
+  min-height:inherit;
+  padding-top:var(--COLORPAD_VERT);padding-bottom:var(--COLORPAD_VERT);padding-left:var(--COLORPAD_HORI);padding-right:var(--COLORPAD_HORI);
+  background-color:rgba(255,255,255,0.3);
 }
