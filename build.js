@@ -1,17 +1,18 @@
-const buildDir="build"
-const srcDir="public"
-const extMap=require("ext_map.js")
+const extMap=require("./ext_map.js")
 const fs=require("fs")
-fs.readdirSync("build/_").forEach(f=>{
-	if(fs.existsSync(`${srcDir}/${f}`))return;
-	fs.unlink(`${buildDir}/_/${f}`);
+const Fs=require("./funcs.js")
+Fs.mkdir(extMap.dirs.build);Fs.mkdir(`${extMap.dirs.build}/_`);
+fs.readdirSync(`${extMap.dirs.build}/_`).forEach(f=>{
+	if(fs.existsSync(`${extMap.dirs.src}/${f}`))return;
+	fs.unlink(`${extMap.dirs.build}/_/${f}`);
 	const i=f.lastIndexOf('.');if(!i)return;
-	const ext=extMap[f.slice(i+1)];if(ext)fs.unlink(`${buildDir}/${f.slice(0,i)}.${ext.ext}`,(e)=>{})
+	const ext=extMap[f.slice(i+1)];if(ext)fs.unlink(`${extMap.dirs.build}/${f.slice(0,i)}.${ext.ext}`,(e)=>{})
 })
-fs.readdirSync("public").forEach(f=>{
-	const s=`${srcDir}/${f}`,d=`${buildDir}/_/${f}`;
-	if(fs.existsSync(d)&&fs.stat(s).mtime<fs.stat(d).mtime)return;
-	fs.copyFile(s,d,fs.constants.COPYFILE_FICLONE)
+fs.readdirSync(extMap.dirs.src).forEach(f=>{
+	const s=`${extMap.dirs.src}/${f}`,d=`${extMap.dirs.build}/_/${f}`;
+	if(fs.existsSync(d)&&fs.statSync(s).mtime<fs.statSync(d).mtime)return;
+	console.log(`Writing ${d}`);fs.copyFile(s,d,fs.constants.COPYFILE_FICLONE,(e)=>{})
 	const i=f.lastIndexOf('.');if(!i)return;
-	const ext=extMap[f.slice(i+1)];if(ext)fs.writeFile(`${buildDir}/${f.slice(0,i)}.${ext.ext}`,ext.cast(fs.readFileSync(s)))
+	const ext=extMap[f.slice(i+1)];if(ext)fs.writeFile(`${extMap.dirs.build}/${f.slice(0,i)}.${ext.ext}`,ext.cast(fs.readFileSync(s).toString()),(e)=>{})
 })
+console.log("built")

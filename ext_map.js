@@ -5,8 +5,9 @@ const templatePath="public/md.html";
 //lists all that gets replaced once to make page assembly faster(probably)
 const splitrs=["{[title]}","{[head]}","{[transit1]}","{[content]}","{[transit2]}","{[foot]}"]
 
-const form=[]{
-	const s=fs.readFileSync(templatePath).toString(),I=0
+const form=[];{
+	const s=fs.readFileSync(templatePath).toString();let I=0
+  console.log(s)
 	for(let i=0;i<splitrs.length;i++){
 		const _=s.indexOf(splitrs[i],I)
 		if(I>_){console.log(`Search for "${splitrs[i]}" failed.`);splitrs.splice(i,1);i--}
@@ -14,10 +15,13 @@ const form=[]{
 	}form.push(s.slice(I))
 }
 module.exports={
+  dirs:{
+    build:"build",
+    src:"public"
+  },
 	md:{
 		ext:"html",
-		cast=(s)=>{
-			let cont=fs.readFileSync(file).toString()
+		cast:(cont)=>{
 			//what to replace stuff with
 			let o={
 				"{[title]}":cont.startsWith('# ')?cont.slice(2).replace(/\n.+/s,""):"&lt;untitled&gt;",
@@ -27,8 +31,8 @@ module.exports={
 				"{[transit2]}":"",
 				"{[foot]}":""
 			}
-			let l=[form[0]];for(let i=0;i<splitrs.length;i++)l.push(o[splitrs[i]]!=undefined?o[splitrs[i]]:"&lt;undefined&gt;",form[i+1])
-			return l.join("")
+			let l=[form[0]];//for(let i=0;i<splitrs.length;i++)l.push(o[splitrs[i]]!=undefined?o[splitrs[i]]:"&lt;undefined&gt;",form[i+1])
+			return l//.join("")
 		}
 	}
 }

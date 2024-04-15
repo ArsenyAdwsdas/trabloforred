@@ -1,5 +1,5 @@
 const express=require("express");const app=express();
-const extMap=require("ext_map.js");
+const extMap=require("./ext_map.js");const fs=require("fs")
 
 
 Object.keys(extMap).forEach(ext=>{const Ext=extMap[ext]
@@ -18,7 +18,7 @@ app.use("/_",express.static("public"));
 
 app.get("/",(request,response)=>{response.render("index");});
 app.get(/\/.+/gs,(req,res)=>{
-	let path=req.baseUrl.slice(req.baseUrl.find('/',1))
+	let path=req.baseUrl.slice(req.baseUrl.lastIndexOf('/',1))
 	if(fs.existsSync(`public/${path}.md`))res.render(path);
 	else res.status(404).send("Error 404")
 });
